@@ -19,8 +19,10 @@ Then add the Edit Nodes section and see this:
 Add in the relevant fields that will be in the Excel file:  
 <img width="411" height="674" alt="image" src="https://github.com/user-attachments/assets/1d50b054-748e-4a2f-b246-23ba8d801e71" />  
 <img width="401" height="701" alt="image" src="https://github.com/user-attachments/assets/42104390-78c2-4949-bb21-eb4c3452eb16" />  
-Then add the convert to file node with the preset set to xlsx for Excel like so:  
-<img width="1877" height="872" alt="image" src="https://github.com/user-attachments/assets/7114e254-0bab-4de0-8298-956723b772c2" />  
+Then add the node for Google Sheets like below:  
+<img width="468" height="856" alt="image" src="https://github.com/user-attachments/assets/c790f1fe-1fa6-469d-9990-90fbfbfc16e6" />  
+
+
 
 
 
