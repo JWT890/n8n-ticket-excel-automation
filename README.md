@@ -22,6 +22,12 @@ Add in the relevant fields that will be in the Excel file:
 Then add the node for Google Sheets like below:  
 <img width="468" height="856" alt="image" src="https://github.com/user-attachments/assets/c790f1fe-1fa6-469d-9990-90fbfbfc16e6" />  
 
+You will need to set up credential access for Google Cloud first. Go to projects on Google cloud and create a new project and create it.  
+Then go to APIs & Services and click on Library, then search for Google Sheets API and enable it.  
+Then go to APIs & Services -> OAuth consent screen, choose external, click create then add required fields such as app name, user support email and dev contact, hit save and continue.  
+Then add a test user account by going to verification center. Then go back to APIs and Services -> Credentials, clcik on create credentials -> OAuth Client ID, web applications, application type as web application, and a URL as the http://localhost:5678/rest/oauth2-credential/callback, then click create.  
+Then copy the client ID and client secret IDs and copy and paste them into n8n for the Google Sheets info. Also don't forget to enable the Google Drive API as well for email sign in to work.  
+
 
 
 
