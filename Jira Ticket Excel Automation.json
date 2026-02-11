@@ -1,0 +1,465 @@
+{
+  "name": "Jira Ticket Excel Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "55d63807-85f6-4e97-aaad-5c403e8cc301",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "options": {
+          "jql": "status = \"To Do\" and created >= -15m"
+        }
+      },
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "31cf4b75-a047-4dc9-b20c-f3d9731f2de0",
+      "name": "Get many issues",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "PtzGIRuYOrXb3Tac",
+          "name": "Jira SW Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d6d93756-7156-495a-8cfe-3531e0d7820d",
+              "name": "TicketID",
+              "value": "={{$json[\"key\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "d6c0a666-f379-4285-b9f4-3181ba822c37",
+              "name": "Summary",
+              "value": "={{$json[\"fields\"][\"summary\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "8b172a2e-81ec-4133-b6c7-e287c49cfc9a",
+              "name": "Description",
+              "value": "={{$json[\"fields\"][\"description\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "2cbb698e-15b4-4ca4-aa12-c8b44d4e1815",
+              "name": "Status",
+              "value": "={{$json[\"fields\"][\"status\"][\"name\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "55304bf3-e552-44ee-b2f4-43a792480efb",
+              "name": "Priority",
+              "value": "={{$json[\"fields\"][\"priority\"][\"name\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "42e68c1c-9151-476c-9952-2706f803be70",
+              "name": "IssueType",
+              "value": "={{$json[\"fields\"][\"issuetype\"][\"name\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "64a6725f-b22e-44fb-b1ee-284567b3d1d2",
+              "name": "Assignee",
+              "value": "={{$json[\"fields\"][\"assignee\"][\"displayName\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "3b5a1f58-4c25-465a-bb6b-d343fdd23c14",
+              "name": "Reporter",
+              "value": "={{$json[\"fields\"][\"reporter\"][\"displayName\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "dd67b2b7-b622-42ed-914b-604341d4585d",
+              "name": "Created",
+              "value": "={{$json[\"fields\"][\"created\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "3b4522be-833e-44c5-b0cc-6bac346332c8",
+              "name": "Updated",
+              "value": "={{$json[\"fields\"][\"updated\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "ffccfe78-64d1-4ab8-9719-1f2bb753392c",
+              "name": "Project",
+              "value": "={{$json[\"fields\"][\"project\"][\"name\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "41ba7338-4a14-4ae6-aa00-71172b60f70a",
+              "name": "Labels",
+              "value": "={{$json[\"fields\"][\"labels\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "31f6a131-9a81-43b4-8720-9d1b52bd6c6e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1d9dbGfCeqFvfdlCvPtj_gsRYhM_q-6EZn5Pr2Ak0YbY",
+          "mode": "list",
+          "cachedResultName": "JIra Tickets",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1d9dbGfCeqFvfdlCvPtj_gsRYhM_q-6EZn5Pr2Ak0YbY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1d9dbGfCeqFvfdlCvPtj_gsRYhM_q-6EZn5Pr2Ak0YbY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "TicketID": "={{ $json.TicketID }}",
+            "Summary": "={{ $json.Summary }}",
+            "Priority": "={{ $json.Priority }}",
+            "Status": "={{ $json.Status }}",
+            "Created": "={{ $json.Created }}",
+            "Reporter": "={{ $json.Reporter }}",
+            "Description": "={{ $json.Description }}",
+            "IssueType": "={{ $json.IssueType }}",
+            "Assignee": "={{ $json.Assignee }}",
+            "Updated": "={{ $json.Updated }}",
+            "Project": "={{ $json.Project }}",
+            "Labels": "={{ $json.Labels }}"
+          },
+          "matchingColumns": [
+            "TicketID"
+          ],
+          "schema": [
+            {
+              "id": "TicketID",
+              "displayName": "TicketID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IssueType",
+              "displayName": "IssueType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Assignee",
+              "displayName": "Assignee",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reporter",
+              "displayName": "Reporter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Created",
+              "displayName": "Created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Updated",
+              "displayName": "Updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Project",
+              "displayName": "Project",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Labels",
+              "displayName": "Labels",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        656,
+        0
+      ],
+      "id": "8d966019-c7fc-4cb5-8393-064f4dcdb35f",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "keN6zOk4qnaYd2qb",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        224
+      ],
+      "id": "aa612b85-0ad8-44c5-b06c-4b5654787f07",
+      "name": "Daily Email Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "options": {
+          "jql": "created >= startOfDay() ORDER BY created DESC"
+        }
+      },
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [
+        208,
+        224
+      ],
+      "id": "4a313cdf-9592-49e0-b564-2db411b599b2",
+      "name": "Get Daily Tickets",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "PtzGIRuYOrXb3Tac",
+          "name": "Jira SW Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const tickets = $input.all();\n\nif (tickets.length === 0) {\n  return [{\n    json: {\n      subject: \"Daily Jira Summary - No New Tickets\",\n      body: \"<p>No new Jira tickets were created today.</p>\"\n    }\n  }];\n}\n\nlet rows = tickets.map(t => `\n  <tr>\n    <td style=\"padding:8px;border:1px solid #ddd\">${t.json.key}</td>\n    <td style=\"padding:8px;border:1px solid #ddd\">${t.json.fields.summary}</td>\n    <td style=\"padding:8px;border:1px solid #ddd\">${t.json.fields.status.name}</td>\n    <td style=\"padding:8px;border:1px solid #ddd\">${t.json.fields.priority ? t.json.fields.priority.name : 'None'}</td>\n    <td style=\"padding:8px;border:1px solid #ddd\">${t.json.fields.assignee ? t.json.fields.assignee.displayName : 'Unassigned'}</td>\n  </tr>\n`).join('');\n\nconst body = `\n  <h2>Daily Jira Ticket Summary</h2>\n  <p>Total new tickets today: <strong>${tickets.length}</strong></p>\n  <table style=\"border-collapse:collapse;width:100%\">\n    <thead>\n      <tr style=\"background:#f2f2f2\">\n        <th style=\"padding:8px;border:1px solid #ddd\">Ticket ID</th>\n        <th style=\"padding:8px;border:1px solid #ddd\">Summary</th>\n        <th style=\"padding:8px;border:1px solid #ddd\">Status</th>\n        <th style=\"padding:8px;border:1px solid #ddd\">Priority</th>\n        <th style=\"padding:8px;border:1px solid #ddd\">Assignee</th>\n      </tr>\n    </thead>\n    <tbody>${rows}</tbody>\n  </table>\n`;\n\nreturn [{\n  json: {\n    subject: `Daily Jira Summary - ${tickets.length} New Ticket(s) - ${new Date().toLocaleDateString()}`,\n    body\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        224
+      ],
+      "id": "1a41a5ab-2fc0-4b5e-a655-7b5a55be4642",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "jwtaylor659@gmail.com",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        224
+      ],
+      "id": "9e68839a-a0bc-4449-82eb-038184de5376",
+      "name": "Send a message",
+      "webhookId": "7b2ef289-1865-42ec-97c9-b411d3575fa3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "5AwevTLXFQ70qn1m",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get many issues",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many issues": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Email Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Daily Tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Daily Tickets": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "21a6f234-032f-4961-9fd5-9d3747cffaff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "760c7a0e24122fb61dbdc56a28f845a63e1c145230ed64d11bcf66a511fb1181"
+  },
+  "id": "XRRTIdAKaSLcfo4s",
+  "tags": []
+}
