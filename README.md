@@ -65,10 +65,45 @@ Get Daily Tickets: Takes an API token from the Personal account, checks for new 
 Code in JavaScript: Formats the email format which leads into ->  
 Send a Message: Sends a gmail message with the tickets that were created in that 24HR period.  
 
-
-# Testing
-
 # Live
+To test live, publish the n8n workflow and make sure the second trigger is set to run every few minutes instead of nearly every 1 minute or so.  
+To test it, go to the Jira page and click on create:  
+<img width="771" height="793" alt="image" src="https://github.com/user-attachments/assets/894eed54-0f1c-49de-8b9b-1c3ca60c528e" />  
+And add any info:  
+<img width="768" height="759" alt="image" src="https://github.com/user-attachments/assets/5e53a25d-9b42-487e-9c50-819fbe5c1ef1" />  
+<img width="764" height="518" alt="image" src="https://github.com/user-attachments/assets/408950ed-ae67-4a85-9718-4485442f6ba8" />  
+<img width="762" height="624" alt="image" src="https://github.com/user-attachments/assets/d90f6da1-bcef-4bc4-a1c9-ff1b7970d63f" />  
+Then click on create. After clicking on create, click on refresh to see the new ticket has been recorded.  
+<img width="1655" height="849" alt="image" src="https://github.com/user-attachments/assets/02561258-ff65-44fe-b5d1-5d14dbf1d7ad" />  
+Then after a couple minute to current setup, it should appear in Google sheets:  
+<img width="1856" height="56" alt="image" src="https://github.com/user-attachments/assets/b29501e5-c388-4eb8-8d91-d8c77fd71f4d" />  
+<img width="621" height="19" alt="image" src="https://github.com/user-attachments/assets/8c4f9236-f83a-42b8-8872-1b4d7525be57" />  
+And then the email should send:  
+<img width="1491" height="255" alt="image" src="https://github.com/user-attachments/assets/582ee4fb-5282-4f8b-a1ef-2c045dc9f223" />  
+
+
+# Looker Studio Visuals
+To get a visualization of the tickets submitted, you can either use Looker Studio or Power BI, but easiest to use Looker Studio since you need a work/school for Power BI.  
+To set up Looker Studio, go to lookerstudio.google.com and you will see this:  
+<img width="1868" height="1038" alt="image" src="https://github.com/user-attachments/assets/7864f006-f9e6-48a4-8fe3-e75edd49e875" />  
+Then click on blank report and you will see this screen:  
+<img width="1869" height="1035" alt="image" src="https://github.com/user-attachments/assets/f2c0186b-592f-4892-aa2c-fb47f6fcb426" />  
+Click on Google Sheets and find the Sheets you are using, click on it, then for worksheets click on the worksheet that pops up, then click on add.  
+Then its time to add to report. For the first chart click on add a chart and choose Pie Chart for ticket priority:  
+<img width="1189" height="844" alt="image" src="https://github.com/user-attachments/assets/2e2947a8-70e6-443d-b929-9f50e3b14b3a" />  
+Then its time to add the ticket status, click on add a chart -> bar chart
+<img width="1210" height="854" alt="image" src="https://github.com/user-attachments/assets/02144a8f-7389-4ca6-8122-df10402f6880" />  
+Then its time add the created part by choosing time series:  
+<img width="1206" height="858" alt="image" src="https://github.com/user-attachments/assets/2ff4ccb8-e6c8-401d-90bf-44e7dc57c963" />  
+Then its time to click on add a chart for bar chart with assignee assigned:  
+<img width="1205" height="853" alt="image" src="https://github.com/user-attachments/assets/db3092a2-3702-4b88-8fbc-1ab12c1b82e4" />  
+Then name the report ticket report2. It should update every few minutes on current setup.  
+
+
+
+
+
+
 
 
 
