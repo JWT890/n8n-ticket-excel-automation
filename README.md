@@ -99,6 +99,8 @@ Then its time to click on add a chart for bar chart with assignee assigned:
 <img width="1205" height="853" alt="image" src="https://github.com/user-attachments/assets/db3092a2-3702-4b88-8fbc-1ab12c1b82e4" />  
 Then name the report ticket report2. It should update every few minutes on current setup.  
 
+This project provides an n8n workflow that automates exporting ticket data from a ticketing system (like Jira) into Excel or Google Sheets. By automatically fetching and updating ticket information, it eliminates manual data entry, ensures accurate records, and saves time for teams. The workflow is fully customizable, allowing users to filter, format, and schedule ticket exports to fit their specific reporting needs, making it ideal for support teams, project managers, and developers who want streamlined ticket tracking and reporting.  
+
 
 
 
