@@ -1,6 +1,6 @@
 # n8n ticket excel automation
 
-This is a project that automates entries of tickets into excel that come in through a ticketing system. This script takes the tedious manual task of inputting new tickets into Google Sheets to accuractly record new tickets that are entered in within the system.  
+Designed and deployed an n8n-based help desk automation workflow that integrates Jira, Google Sheets, Gmail, and Looker Studio to automate ticket tracking and reporting. The workflow periodically retrieves Jira tickets through the API, transforms ticket data into structured records, and automatically updates a centralized Google Sheets database, eliminating repetitive manual data entry. A secondary workflow generates and distributes daily ticket summaries through Gmail, while Looker Studio provides dashboards for ticket priority, status, creation trends, and assignee metrics.
 
 # Jira
 First step is to get a Jira API token through this link: https://id.atlassian.com/manage-profile/security/api-tokens.  
